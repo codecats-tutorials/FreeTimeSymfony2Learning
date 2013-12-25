@@ -1,3 +1,3 @@
 ssstrz_test_homepage:
-    pattern:  /hellow/{name}
-    defaults: { _controller: SsstrzTestBundle:Default:index }
+    pattern:  /hellow/{name},{surname}
+    defaults: { _controller: SsstrzTestBundle:Default:index, surname: 'ss' }
