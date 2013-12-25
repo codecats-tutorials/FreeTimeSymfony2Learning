@@ -1,0 +1,3 @@
+ssstrz_test_homepage:
+    pattern:  /hellow/{name}
+    defaults: { _controller: SsstrzTestBundle:Default:index }

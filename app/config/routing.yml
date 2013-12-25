@@ -1,3 +1,7 @@
+ssstrz_test:
+    resource: "@SsstrzTestBundle/Resources/config/routing.yml"
+    prefix:   /
+
 acme_hello:
     resource: "@AcmeHelloBundle/Resources/config/routing.yml"
     prefix:   /
