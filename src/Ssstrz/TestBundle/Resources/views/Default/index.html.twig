@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-	<h5>Hello {{ name }} {{ surname }}!!</h5>
+<h5>Hello {{ name|capitalize }} {{ surname|title }}!!</h5>
 	<p>
 	{{ url }}
 	</p>
@@ -10,4 +10,10 @@
                 {{ flashMessage }}
         {% endfor %}
         </small>
+        {{ include('::GoodBye.html.twig', {'name' : name}) }}
+        <hr>
+        {{ render(controller('AcmeHelloBundle:Hello:index', {
+            'name' : name
+        })) }}
+        <a href="{{ path('acme_hello_homepage', {'name':name}) }}">HELLO</a>
 {% endblock %}
