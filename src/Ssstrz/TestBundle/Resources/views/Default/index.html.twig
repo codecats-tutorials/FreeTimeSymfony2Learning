@@ -6,6 +6,7 @@
 	{{ url }}
 	</p>
         <small>
+            {{ dump(app) }}
         {% for flashMessage in app.session.flashbag.get('notice') %}
                 {{ flashMessage }}
         {% endfor %}
@@ -16,4 +17,5 @@
             'name' : name
         })) }}
         <a href="{{ path('acme_hello_homepage', {'name':name}) }}">HELLO</a>
+
 {% endblock %}
