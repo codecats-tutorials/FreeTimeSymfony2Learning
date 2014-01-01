@@ -1,0 +1,10 @@
+acme_store_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: AcmeStoreBundle:Default:index }
+    requirements:
+      name: !show
+acme_store_show:
+    pattern: /hello/show/{id}
+    defaults: { _controller: AcmeStoreBundle:Default:show, id: 1}
+    requirements:
+        id: \d+

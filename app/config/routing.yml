@@ -1,3 +1,7 @@
+acme_store:
+    resource: "@AcmeStoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ssstrz_test:
     resource: "@SsstrzTestBundle/Resources/config/routing.yml"
     prefix:   /
