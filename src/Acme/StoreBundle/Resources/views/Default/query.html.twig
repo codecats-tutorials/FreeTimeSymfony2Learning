@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% for product in products %}
+<p>
+    {{ product.name|capitalize }}, {{product.id }}
+</p>
+    {% endfor %}
+{% endblock %}

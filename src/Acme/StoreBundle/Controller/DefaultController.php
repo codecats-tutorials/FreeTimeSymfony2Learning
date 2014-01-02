@@ -29,16 +29,49 @@ class DefaultController extends Controller
     
     public function showAction($id) 
     {
-        $product = $this->getDoctrine()
-                ->getRepository('AcmeStoreBundle:Product')
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('AcmeStoreBundle:Product')
                 ->find($id);
         
         if ( ! $product) {
             throw $this->createNotFoundException('No product ' . $id);
         }
+        $product->setName('Basket');
+        
+        $em->flush();
         
         return $this->render('AcmeStoreBundle:Default:show.html.twig',
                 array('product' => $product)
+        );
+    }
+    
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $product = $em->getRepository('AcmeStoreBundle:Product')->find($id);
+        
+        $em->remove($product);
+        $em->flush();
+        
+        return $this->redirect($this->generateUrl('acme_store_homepage',
+                array('name' => 'tomek')
+        ));
+    }
+    public function queryAction($id)
+    {
+        //$em = $this->getDoctrine()->getManager();
+        //$product = $em->getRepository('AcmeStoreBundle:Product')->findOneByPrice('1.99');
+        /*$query = $em->createQuery('SELECT p FROM AcmeStoreBundle:Product p
+            WHERE p.price = 1.99');*/
+        $repo = $this->getDoctrine()->getRepository('AcmeStoreBundle:Product');
+        $query = $repo->createQueryBuilder('p')
+                ->where('p.price = 1.99')
+                ->getQuery();
+        
+        $products = $query->getResult();
+        return $this->render('AcmeStoreBundle:Default:query.html.twig',
+                array('products' => $products)
         );
     }
 }
