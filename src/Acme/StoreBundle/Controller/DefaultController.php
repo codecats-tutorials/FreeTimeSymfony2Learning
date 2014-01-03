@@ -60,16 +60,18 @@ class DefaultController extends Controller
     }
     public function queryAction($id)
     {
-        //$em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         //$product = $em->getRepository('AcmeStoreBundle:Product')->findOneByPrice('1.99');
-        /*$query = $em->createQuery('SELECT p FROM AcmeStoreBundle:Product p
+     /*   $query = $em->createQuery('SELECT p FROM AcmeStoreBundle:Product p
             WHERE p.price = 1.99');*/
-        $repo = $this->getDoctrine()->getRepository('AcmeStoreBundle:Product');
+    /*    $repo = $this->getDoctrine()->getRepository('AcmeStoreBundle:Product');
         $query = $repo->createQueryBuilder('p')
                 ->where('p.price = 1.99')
                 ->getQuery();
         
         $products = $query->getResult();
+      */  
+        $products = $em->getRepository('AcmeStoreBundle:Product')->findAllByName();
         return $this->render('AcmeStoreBundle:Default:query.html.twig',
                 array('products' => $products)
         );
