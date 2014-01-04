@@ -2,6 +2,10 @@
 
 {% block body %}
 <p>
-    {{ product.name|capitalize }}
+    {% for product in products %}
+        {{ dump(product.name) }}
+    {% endfor %}
+    <hr>
+    {{ dump(category.name) }}
 </p>
 {% endblock %}

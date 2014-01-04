@@ -4,9 +4,17 @@ namespace Acme\StoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="Acme\StoreBundle\Entity\ProductRepository")
+ * @ORM\Table(name="product")
  */
 class Product 
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    protected $category;
+
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id

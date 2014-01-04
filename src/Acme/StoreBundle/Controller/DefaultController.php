@@ -8,6 +8,8 @@ use Acme\StoreBundle\Entity\Product;
 
 use Symfony\Component\HttpFoundation\Response;
 
+use Acme\StoreBundle\Entity\Category;
+
 class DefaultController extends Controller
 {
     public function indexAction($name)
@@ -29,7 +31,7 @@ class DefaultController extends Controller
     
     public function showAction($id) 
     {
-        $em = $this->getDoctrine()->getManager();
+        /*$em = $this->getDoctrine()->getManager();
         $product = $em->getRepository('AcmeStoreBundle:Product')
                 ->find($id);
         
@@ -38,10 +40,14 @@ class DefaultController extends Controller
         }
         $product->setName('Basket');
         
-        $em->flush();
+        $em->flush();*/
+        $product = $this->getDoctrine()->getRepository('AcmeStoreBundle:Product')->find(7);
+        $category = $product->getCategory();
+        $products = $category->getProducts();
+        
         
         return $this->render('AcmeStoreBundle:Default:show.html.twig',
-                array('product' => $product)
+                array('products' => $products, 'category' => $category)
         );
     }
     
@@ -75,5 +81,24 @@ class DefaultController extends Controller
         return $this->render('AcmeStoreBundle:Default:query.html.twig',
                 array('products' => $products)
         );
+    }
+    public function createAction() 
+    {
+        $category = new Category();
+        $category->setName('Sport');
+        $category->setString('ss');
+        
+        $product = new Product();
+        $product->setName('Saw');
+        $product->setPrice(34.54);
+        $product->setDescription('For lumberjack');
+        $product->setCategory($category);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($category);
+        $em->persist($product);
+        $em->flush();
+        
+        return new Response('aaa');
     }
 }
