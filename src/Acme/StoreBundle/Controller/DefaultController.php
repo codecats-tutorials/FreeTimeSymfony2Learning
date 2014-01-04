@@ -41,7 +41,7 @@ class DefaultController extends Controller
         $product->setName('Basket');
         
         $em->flush();*/
-        $product = $this->getDoctrine()->getRepository('AcmeStoreBundle:Product')->find(7);
+        $product = $this->getDoctrine()->getRepository('AcmeStoreBundle:Product')->findOneByIdJonedToCategory(7);
         $category = $product->getCategory();
         $products = $category->getProducts();
         
