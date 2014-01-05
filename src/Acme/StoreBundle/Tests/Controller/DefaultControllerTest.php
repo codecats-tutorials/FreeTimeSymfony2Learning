@@ -9,9 +9,17 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = static::createClient();
-
-        $crawler = $client->request('GET', '/hello/Fabien');
-
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
+        
+        $clawler = $client->request('GET', '/hello/query/1');
+        
+        $this->assertTrue($clawler->filter('html:contains("Ball")')->count() > 0);
+        
+        $this->assertTrue($clawler->filter('html:contains("witaj")')->count() > 0);
+        
+        $link = $clawler->filter('a:contains("witaj")')->eq(0)->link();
+        
+        $clawler = $client->click($link);
+        
+        $this->assertTrue($clawler->filter('html:contains("Hello Test Ss!!")')->count() > 0);
     }
 }
