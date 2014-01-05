@@ -1,4 +1,4 @@
-imports:
+gotimports:
     - { resource: config_dev.yml }
 
 framework:

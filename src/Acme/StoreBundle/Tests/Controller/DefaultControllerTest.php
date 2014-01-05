@@ -16,10 +16,12 @@ class DefaultControllerTest extends WebTestCase
         
         $this->assertTrue($clawler->filter('html:contains("witaj")')->count() > 0);
         
-        $link = $clawler->filter('a:contains("witaj")')->eq(0)->link();
+        //$link = $clawler->filter('a:contains("witaj")')->eq(0)->link();
+        
+        $link = $clawler->selectLink('witaj')->link();
         
         $clawler = $client->click($link);
         
-        $this->assertTrue($clawler->filter('html:contains("Hello Test Ss!!")')->count() > 0);
+        $this->assertCount(1 ,$clawler->filter('html:contains("Hello Test Ss!!")'));
     }
 }
