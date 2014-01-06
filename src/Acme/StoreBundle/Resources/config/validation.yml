@@ -1,0 +1,4 @@
+Acme\StoreBundle\Entity\Author:
+    properties:
+      name:
+        - NotBlank: ~

@@ -10,10 +10,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Acme\StoreBundle\Entity\Category;
 
+use Acme\StoreBundle\Entity\Author;
+
 class DefaultController extends Controller
 {
     public function indexAction($name)
     {
+        
         $product = new Product();
         
         $product->setName('Ball');
@@ -41,14 +44,26 @@ class DefaultController extends Controller
         $product->setName('Basket');
         
         $em->flush();*/
-        $product = $this->getDoctrine()->getRepository('AcmeStoreBundle:Product')->findOneByIdJonedToCategory(7);
+       /* $product = $this->getDoctrine()->getRepository('AcmeStoreBundle:Product')->findOneByIdJonedToCategory(7);
         $category = $product->getCategory();
         $products = $category->getProducts();
         
-        
         return $this->render('AcmeStoreBundle:Default:show.html.twig',
                 array('products' => $products, 'category' => $category)
-        );
+        );*/
+        
+        $author = new Author();
+     
+        $validation = $this->get('validator');
+        $errors = $validation->validate($author);
+        
+        if ($errors->count() > 0) {
+            $err = (string) $errors;
+            
+            return new Response($err);
+        }
+        
+        return new Response('abc');
     }
     
     public function deleteAction($id)
