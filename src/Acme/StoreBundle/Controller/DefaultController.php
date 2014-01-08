@@ -53,6 +53,7 @@ class DefaultController extends Controller
         );*/
         
         $author = new Author();
+        $author->name = 'bolek';
      
         $validation = $this->get('validator');
         $errors = $validation->validate($author);
