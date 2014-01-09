@@ -1,20 +1,31 @@
 <?php
 namespace Acme\TaskBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- */
 class Task 
 {
-    /**
-     * @ORM\Id
-     */
+
     protected $task;
-    
-    /**
-     * @ORM\Colum(type="string")
-     */
+
     protected $dueDate;
+    
+    public function getTask()
+    {
+        return $this->task;
+    }
+    
+    public function setTask($task)
+    {
+        $this->task = $task;
+    }
+    
+    public function getDueDate()
+    {
+        return $this->dueDate;
+    }
+    
+    public function setDueDate($dueDate)
+    {
+        $this->dueDate = $dueDate;
+    }
 }

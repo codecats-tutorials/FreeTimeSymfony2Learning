@@ -1,3 +1,7 @@
+acme_task_new:
+    pattern: /hello/new
+    defaults: { _controller: AcmeTaskBundle:Default:new }
 acme_task_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: AcmeTaskBundle:Default:index }
+    
