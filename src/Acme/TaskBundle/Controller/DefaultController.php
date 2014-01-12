@@ -3,7 +3,8 @@
 namespace Acme\TaskBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Acme\TaskBundle\Entity\Task;
+    Acme\TaskBundle\Entity\Task,
+    Acme\TaskBundle\Form\Type\TaskType;
 
 class DefaultController extends Controller
 {
@@ -18,12 +19,14 @@ class DefaultController extends Controller
         $task->setTask('ab');
         $task->setDueDate(new \DateTime('tomorrow'));
 
+        /*
         $form = $this->createFormBuilder($task)
                 ->add('task', 'text')
                 ->add('dueDate', 'date')
                 ->add('save', 'submit')
                 ->add('saveAs', 'submit')
-                ->getForm();
+                ->getForm();*/
+        $form = $this->createForm(new TaskType(), $task);
         
         $form->handleRequest($this->getRequest());
         
