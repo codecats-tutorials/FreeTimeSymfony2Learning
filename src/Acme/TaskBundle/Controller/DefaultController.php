@@ -26,15 +26,17 @@ class DefaultController extends Controller
                 ->add('save', 'submit')
                 ->add('saveAs', 'submit')
                 ->getForm();*/
-        $form = $this->createForm(new TaskType(), $task);
+        $form = $this->createForm('task', $task);
         
         $form->handleRequest($this->getRequest());
         
         if ($form->isValid()) {
-            $res = 'save';
-            if ($form->get('saveAs')->isClicked()) $res = 'saveAS';
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($task);
+            $em->flush();
+            
             return $this->redirect($this->generateUrl('acme_task_homepage',
-                    array('name' => $res)
+                    array('name' => 'ok')
             ));
         }
         

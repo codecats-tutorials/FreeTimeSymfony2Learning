@@ -5,3 +5,7 @@ services:
 #    acme_task.example:
 #        class: %acme_task.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    acme_task.type.task:
+        class: Acme\TaskBundle\Form\Type\TaskType
+        tags:
+          - {name: form.type, alias:task}
