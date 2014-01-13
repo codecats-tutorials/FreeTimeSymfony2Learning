@@ -3,8 +3,7 @@
 namespace Acme\TaskBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Acme\TaskBundle\Entity\Task,
-    Acme\TaskBundle\Form\Type\TaskType;
+    Acme\TaskBundle\Entity\Task;
 
 class DefaultController extends Controller
 {
