@@ -8,14 +8,15 @@ class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        $this->container->get('acme_user.talker')->sayHi();
-        $name = $this->container->get('acme_user.talker')->sayHi();
+        $greeter = $this->container->get('acme_user.greeter');
+        $greeter->getTalker()->sayHi();
+        $name = $greeter->getTalker()->sayHi();
         
         
         return $this->render('AcmeUserBundle:Default:index.html.twig', 
                 array(
                     'name' => $name,
-                    'surname' => $this->container->get('acme_user.talker')->getSurname()
+                    'surname' => $greeter->getTalker()->getSurname()
                 )
         );
     }

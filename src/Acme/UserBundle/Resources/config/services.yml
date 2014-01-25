@@ -2,6 +2,7 @@ parameters:
 #    acme_user.example.class: Acme\UserBundle\Example
     acme_user.talker.class: Acme\UserBundle\Talker
     acme_user.talker.surname: True
+    acme_user.greeter.class: Acme\UserBundle\GreeterManager
 
 services:
 #    acme_user.example:
@@ -10,3 +11,7 @@ services:
     acme_user.talker:
         class: %acme_user.talker.class%
         arguments: ["%acme_user.talker.surname%"]
+        
+    acme_user.greeter:
+        class: %acme_user.greeter.class%
+        arguments: ["@acme_user.talker"]
