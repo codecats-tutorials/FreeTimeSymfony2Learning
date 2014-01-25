@@ -1,7 +1,12 @@
 parameters:
 #    acme_user.example.class: Acme\UserBundle\Example
+    acme_user.talker.class: Acme\UserBundle\Talker
+    acme_user.talker.surname: True
 
 services:
 #    acme_user.example:
 #        class: %acme_user.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    acme_user.talker:
+        class: %acme_user.talker.class%
+        arguments: ["%acme_user.talker.surname%"]
